@@ -6,6 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -23,6 +24,7 @@ public class TestCase {
     public void initializeTestSuite() {
         System.out.println("Initializing Test Cases:");
         WebDriverManager.chromedriver().setup();
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_LOG_PROPERTY, "build/chromedriver.log");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -30,7 +32,8 @@ public class TestCase {
     }
 
     @Test(priority = 1, enabled = true)
-    public void validateLowRatingItems() throws InterruptedException {
+    public void testCase01() throws InterruptedException {
+        //
         System.out.println("Test Case 1: Validate Low-Rating Items Started");
         try {
             seleniumWrapper.navigateToHomePage("https://www.flipkart.com/");
@@ -48,7 +51,8 @@ public class TestCase {
     }
 
     @Test(priority = 2, enabled = true)
-    public void validateHighDiscountItems() throws InterruptedException {
+    public void testCase02() throws InterruptedException {
+        //
         System.out.println("Test Case 2: Validate High Discount Items Started");
         try {
             seleniumWrapper.searchItem("iPhone", "//input[@class='zDPmFV']", "//button[@class='MJG8Up']");
@@ -62,7 +66,8 @@ public class TestCase {
     }
 
     @Test(priority = 3, enabled = true)
-    public void validateTopReviewedItems() throws InterruptedException {
+    public void testCase03() throws InterruptedException {
+        //
         System.out.println("Test Case 3: Validate Top Reviewed Items Started");
         try {
             seleniumWrapper.searchItem("Coffee Mug", "//input[@class='zDPmFV']", "//button[@class='MJG8Up']");
